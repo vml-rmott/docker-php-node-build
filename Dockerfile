@@ -36,4 +36,6 @@ RUN composer selfupdate
 
 # Install node tools
 RUN npm install -g gulp
+RUN npm install -g npm-cache
 RUN gulp --version
+RUN npm-cache --version
