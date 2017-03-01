@@ -1,5 +1,4 @@
 FROM debian:8.6
-MAINTAINER David Sferruzza <david.sferruzza@gmail.com>
 
 # Let the conatiner know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
@@ -12,7 +11,7 @@ RUN apt-get update \
  apt-transport-https \
  ca-certificates \
  && curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
- && echo "deb https://deb.nodesource.com/node_6.x jessie main" > /etc/apt/sources.list.d/nodesource.list \
+ && echo "deb https://deb.nodesource.com/node_0.12 jessie main" > /etc/apt/sources.list.d/nodesource.list \
 # Install tools
  && apt-get update \
  && apt-get install --no-install-recommends -y \
@@ -36,6 +35,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer selfupdate
 
 # Install node tools
-RUN npm install -g grunt-cli bower
-RUN grunt --version
-RUN bower --allow-root --version
+RUN npm install -g gulp
+RUN gulp --version
