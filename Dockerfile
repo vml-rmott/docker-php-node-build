@@ -1,4 +1,4 @@
-FROM debian:8.6
+FROM php:5.6-cli
 
 # Let the conatiner know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
@@ -18,7 +18,9 @@ RUN apt-get update \
  openssh-client \
  bzip2 \
  git \
- php5-cli \
+ zip \
+ rsync \
+ unzip \
  nodejs \
  && ln -f -s /usr/bin/nodejs /usr/bin/node \
  # Slim down image
@@ -26,9 +28,10 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/man/?? /usr/share/man/??_*
 
 # Show versions
-RUN php -v
 RUN node -v
 RUN npm -v
+RUN php -v
+RUN php -i
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
